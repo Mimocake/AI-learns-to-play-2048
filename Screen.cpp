@@ -18,11 +18,6 @@ Screen::Screen()
             rect[i][j].setOutlineThickness(10);
             txt[i][j].setFillColor(Color(119, 110, 101));
             rect[i][j].setPosition(20 + 220 * i, 20 + 220 * j);
-            txt[i][j].setPosition(55 + 220 * i, 55 + 220 * j);
-            Vector2f centerPos = Vector2f(110, 95);
-            //txt[i][j].setPosition(centerPos.x - txt[i][j].getGlobalBounds().width / 2 + 220 * i, 
-                                  //centerPos.y - txt[i][j].getGlobalBounds().height / 2 + 220 * j);
-
         }
     }
 }
@@ -35,6 +30,8 @@ void Screen::set_screen(const vector<vector<int>>& board)
         {
             txt[i][j].setFillColor(board[i][j] > 4 ? Color(249, 246, 242) : Color(119, 110, 101));
             txt[i][j].setString(board[i][j] ? to_string(board[i][j]) : "");
+            txt[i][j].setOrigin(txt[i][j].getLocalBounds().width / 2, txt[i][j].getLocalBounds().height / 2);
+            txt[i][j].setPosition(110 + 220 * i, 100 + 220 * j);
             rect[i][j].setFillColor(color_picker(board[i][j]));
         }
     }

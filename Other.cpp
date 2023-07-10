@@ -19,3 +19,60 @@ Color color_picker(int i)
 	default: return Color(0, 0, 0); break;
 	}
 }
+
+vector<vector<int>> rotate(vector<vector<int>> matrix, int angle)
+{
+	vector<vector<int>> temp(4, vector<int>(4));
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if (angle == -90)
+			{
+				temp[i][j] = matrix[3 - j][i];
+			}
+			else if (angle == 90)
+			{
+				temp[3 - j][i] = matrix[i][j];
+			}
+		}
+	}
+	return temp;
+}
+
+void compress(vector<vector<int>>& matrix)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		for (int n = 0; n < 4; n++)
+		{
+			for (int j = 3; j > 0; j--)
+			{
+				if (matrix[i][j] == 0)
+				{
+					matrix[i][j] = matrix[i][j-1];
+					matrix[i][j-1] = 0;
+				}
+			}
+		}
+	}
+}
+
+void merge(vector<vector<int>>& matrix)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		for (int n = 0; n < 4; n++)
+		{
+			for (int j = 3 - n; j > 0; j--)
+			{
+				if (matrix[i][j] == matrix[i][j - 1])
+				{
+					matrix[i][j - 1] = 0;
+					matrix[i][j] *= 2;
+				}
+			}
+		}
+	}
+
+}

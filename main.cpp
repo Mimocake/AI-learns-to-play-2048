@@ -1,19 +1,12 @@
 #include "Board.hpp"
 #include "Screen.hpp"
-#include <iostream>
 
 int main()
 {
     RenderWindow window(VideoMode(900, 900), L"2048", Style::Close);
-    Font font;
-    Text txt("2", font, 80);
-    txt.setPosition(200, 200);
-    txt.setStyle(Text::Bold);
-    if (!font.loadFromFile("ClearSans-Bold.ttf"))
-    {
-        cout << "font error";
-    }
     Board board;
+    board.new_step();
+    board.new_step();
     Screen screen;
     screen.set_screen(board.tiles);
     while (window.isOpen())
@@ -21,8 +14,40 @@ int main()
         Event event;
         while (window.pollEvent(event))
         {
-            if (event.type == Event::Closed)
-                window.close();
+            switch (event.type) 
+            {
+            case Event::Closed: window.close(); break;
+            case Event::KeyPressed:
+                if (event.key.code == Keyboard::W)
+                {
+                    vector<vector<int>> t = board.tiles;
+                    board.move_up();
+                    if (t != board.tiles) board.new_step();
+                    screen.set_screen(board.tiles);
+                }
+                else if (event.key.code == Keyboard::S)
+                {
+                    vector<vector<int>> t = board.tiles;
+                    board.move_down();
+                    if (t != board.tiles) board.new_step();
+                    screen.set_screen(board.tiles);
+                }
+                else if (event.key.code == Keyboard::A)
+                {
+                    vector<vector<int>> t = board.tiles;
+                    board.move_left();
+                    if (t != board.tiles) board.new_step();
+                    screen.set_screen(board.tiles);
+                }
+                else if (event.key.code == Keyboard::D)
+                {
+                    vector<vector<int>> t = board.tiles;
+                    board.move_right();
+                    if (t != board.tiles) board.new_step();
+                    screen.set_screen(board.tiles);
+                }
+                break;
+            }
         }
         window.clear(Color(187, 173, 160));
         screen.display(&window);
