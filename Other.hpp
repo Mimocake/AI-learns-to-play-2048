@@ -9,4 +9,4 @@ vector<vector<int>> rotate(vector<vector<int>>, int);
 
 void compress(vector<vector<int>>&);
 
-void merge(vector<vector<int>>&);
+void merge(vector<vector<int>>&, int&);

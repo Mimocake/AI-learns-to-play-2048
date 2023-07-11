@@ -58,7 +58,7 @@ void compress(vector<vector<int>>& matrix)
 	}
 }
 
-void merge(vector<vector<int>>& matrix)
+void merge(vector<vector<int>>& matrix, int& score)
 {
 	for (int i = 0; i < 4; i++)
 	{
@@ -70,6 +70,7 @@ void merge(vector<vector<int>>& matrix)
 				{
 					matrix[i][j - 1] = 0;
 					matrix[i][j] *= 2;
+					score += matrix[i][j];
 				}
 			}
 		}

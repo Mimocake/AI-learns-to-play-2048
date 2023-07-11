@@ -11,8 +11,14 @@ private:
 	Font font;
 	vector<vector<RectangleShape>> rect;
 	vector<vector<Text>> txt;
+	RectangleShape score_rect;
+	Text SCORE;
+	Text actual_score;
+	Text gameover;
 public:
 	Screen();
-	void set_screen(const vector<vector<int>>&);
+	void set_screen(const vector<vector<int>>&, int score);
 	void display(RenderWindow*);
+	void animation(RenderWindow*, int, int);
+	void game_over(RenderWindow*);
 };
