@@ -1,9 +1,10 @@
 #include "Board.hpp"
 #include "Screen.hpp"
+#include "Network.hpp"
 
 int main()
 {
-    RenderWindow window(VideoMode(900, 1010), L"2048", Style::Close);
+    RenderWindow window(VideoMode(900, 1020), L"2048", Style::Close);
     Board board;
     board.new_step();
     board.new_step();
@@ -26,7 +27,6 @@ int main()
                     {
                         uv xy = board.new_step();
                         screen.set_screen(board.tiles, board.score);
-                        //screen.animation(&window, xy.x, xy.y);
                     }
                     if (board.num_of_empty <= 0)
                     {
@@ -49,7 +49,6 @@ int main()
                     {
                         uv xy = board.new_step();
                         screen.set_screen(board.tiles, board.score);
-                        //screen.animation(&window, xy.x, xy.y);
                     }
                     if (board.num_of_empty <= 0)
                     {
@@ -72,7 +71,6 @@ int main()
                     {
                         uv xy = board.new_step();
                         screen.set_screen(board.tiles, board.score);
-                        //screen.animation(&window, xy.x, xy.y);
                     }
                     if (board.num_of_empty <= 0)
                     {
@@ -95,7 +93,6 @@ int main()
                     {
                         uv xy = board.new_step();
                         screen.set_screen(board.tiles, board.score);
-                        //screen.animation(&window, xy.x, xy.y);
                     }
                     if (board.num_of_empty <= 0)
                     {
