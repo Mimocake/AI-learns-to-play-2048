@@ -24,10 +24,13 @@ private:
 	RectangleShape bot_rect;
 	Text BOT;
 	Text actual_bot;
+	RectangleShape game_rect;
+	Text GAME;
+	Text actual_game;
 public:
 	Screen();
 	void set_screen(const vector<vector<int>>&, int score);
-	void set_bot_and_gen(int, int, int);
+	void set_bot_and_gen(int, int, int, int);
 	void display(RenderWindow*);
 	void game_over(RenderWindow*);
 };

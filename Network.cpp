@@ -75,8 +75,8 @@ void Network::mutation()
 			{
 				if (rand() % 100 >= mut_rate)
 				{
-					float randf = (rand(2 * mut_rate) - mut_rate) / 100;
-					connections[n][i][j] *= randf();
+					float randf = (rand() % (mut_rate * 2) - mut_rate) / 100.0 + 1;
+					connections[n][i][j] *= randf;
 				}
 			}
 		}
@@ -85,12 +85,12 @@ void Network::mutation()
 
 Network crossing(Network& n1, Network& n2)
 {
-	Network temp(n1.architecture);
-	for (int n = 0; n < connections.size(); n++)
+	Network temp(n1.architecture, 1);
+	for (int n = 0; n < n1.connections.size(); n++)
 	{
-		for (int i = 0; i < connections[n].size(); i++)
+		for (int i = 0; i < n1.connections[n].size(); i++)
 		{
-			for (int j = 0; j < connections[n][i].size(); j++)
+			for (int j = 0; j < n1.connections[n][i].size(); j++)
 			{
 				if (rand() % 2) temp.connections[n][i][j] = n1.connections[n][i][j];
 				else temp.connections[n][i][j] = n2.connections[n][i][j];

@@ -75,5 +75,57 @@ void merge(vector<vector<int>>& matrix, int& score)
 			}
 		}
 	}
+}
 
+void sort_vec(vector<float>& vec)
+{
+	float temp;
+	for (int i = 0; i < 4; i++) 
+	{
+		for (int j = 0; j < 3; j++) 
+		{
+			if (vec[j] < vec[j + 1])
+			{
+				temp = vec[j];
+				vec[j] = vec[j + 1];
+				vec[j + 1] = temp;
+			}
+		}
+	}
+}
+
+bool choose_move(vector<float> res, Board& board, Screen& screen)
+{
+	vector<vector<int>> t;
+	vector<float> sorted_res = res;
+	sort_vec(sorted_res);
+
+	for (int n = 0; n < 4; n++)
+	{
+		int index = 0;
+		for (int i = 0; i < 4; i++)
+		{
+			if (res[i] == sorted_res[n])
+			{
+				index = i;
+			}
+		}
+		t = board.tiles;
+		switch (index)
+		{
+		case 0: board.move_up(); break;
+		case 1: board.move_down(); break;
+		case 2: board.move_left(); break;
+		case 3: board.move_right(); break;
+		}
+		if (t != board.tiles)
+		{
+			board.new_step();
+			screen.set_screen(board.tiles, board.score);
+			return false;
+		}
+		else if (n == 3 && board.num_of_empty == 0) 
+			return true; 
+	}
+	return false;
 }

@@ -17,7 +17,7 @@ public:
 	int num_of_empty;
 	int score;
 	Board();
-	uv new_step();
+	void new_step();
 	void move_up();
 	void move_down();
 	void move_left();

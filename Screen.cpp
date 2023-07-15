@@ -95,24 +95,44 @@ Screen::Screen()
     actual_gen.setPosition(560, 960);
 
     bot_rect.setFillColor(Color(204, 192, 179));
-    bot_rect.setSize(Vector2f(200, 100));
+    bot_rect.setSize(Vector2f(70, 100));
     bot_rect.setPosition(680, 900);
     BOT.setFont(font);
     BOT.setCharacterSize(30);
     BOT.setString("BOT");
     BOT.setFillColor(Color(238, 228, 218));
     FloatRect textRect8 = BOT.getLocalBounds();
-    BOT.setOrigin(textRect6.left + textRect8.width / 2.0f,
+    BOT.setOrigin(textRect8.left + textRect8.width / 2.0f,
         textRect8.top + textRect8.height / 2.0f);
-    BOT.setPosition(780, 920);
+    BOT.setPosition(715, 920);
     actual_bot.setFont(font);
     actual_bot.setCharacterSize(45);
-    actual_bot.setString("0");
+    actual_bot.setString("1");
     actual_bot.setFillColor(Color(255, 255, 255));
     FloatRect textRect9 = actual_bot.getLocalBounds();
     actual_bot.setOrigin(textRect9.left + textRect9.width / 2.0f,
         textRect9.top + textRect9.height / 2.0f);
-    actual_bot.setPosition(780, 960);
+    actual_bot.setPosition(715, 960);
+
+    game_rect.setFillColor(Color(204, 192, 179));
+    game_rect.setSize(Vector2f(110, 100));
+    game_rect.setPosition(770, 900);
+    GAME.setFont(font);
+    GAME.setCharacterSize(30);
+    GAME.setString("GAME");
+    GAME.setFillColor(Color(238, 228, 218));
+    FloatRect textRect10 = GAME.getLocalBounds();
+    GAME.setOrigin(textRect10.left + textRect10.width / 2.0f,
+        textRect10.top + textRect10.height / 2.0f);
+    GAME.setPosition(825, 920);
+    actual_game.setFont(font);
+    actual_game.setCharacterSize(45);
+    actual_game.setString("1");
+    actual_game.setFillColor(Color(255, 255, 255));
+    FloatRect textRect11 = actual_game.getLocalBounds();
+    actual_game.setOrigin(textRect11.left + textRect11.width / 2.0f,
+        textRect11.top + textRect11.height / 2.0f);
+    actual_game.setPosition(825, 960);
 }
 
 void Screen::set_screen(const vector<vector<int>>& board, int score)
@@ -124,7 +144,8 @@ void Screen::set_screen(const vector<vector<int>>& board, int score)
             txt[i][j].setFillColor(board[i][j] > 4 ? Color(249, 246, 242) : Color(119, 110, 101));
             txt[i][j].setString(board[i][j] ? to_string(board[i][j]) : "");
             txt[i][j].setCharacterSize(board[i][j] < 128 ? 100 : (board[i][j] < 1024 ? 80 : 60));
-            txt[i][j].setOrigin(txt[i][j].getLocalBounds().width / 2 - 13, txt[i][j].getLocalBounds().height / 2 + 20);
+            txt[i][j].setOrigin(txt[i][j].getLocalBounds().width / 2 + 20, 
+                txt[i][j].getLocalBounds().height / 2 + 20);
             txt[i][j].setPosition(100 + 220 * i, 100 + 220 * j);
             FloatRect textRect = txt[i][j].getLocalBounds();
             txt[i][j].setOrigin(textRect.left + textRect.width / 2.0f,
@@ -139,7 +160,7 @@ void Screen::set_screen(const vector<vector<int>>& board, int score)
         textRect2.top + textRect2.height / 2.0f);
 }
 
-void Screen::set_bot_and_gen(int best, int gen_, int bot_)
+void Screen::set_bot_and_gen(int best, int gen_, int bot_, int game)
 {
     actual_best_in_gen.setString(to_string(best));
     FloatRect textRect5 = actual_best_in_gen.getLocalBounds();
@@ -151,10 +172,15 @@ void Screen::set_bot_and_gen(int best, int gen_, int bot_)
     actual_gen.setOrigin(textRect7.left + textRect7.width / 2.0f,
         textRect7.top + textRect7.height / 2.0f);
 
-    actual_bot.setString(to_string(bot_));
+    actual_bot.setString(to_string(bot_+1));
     FloatRect textRect9 = actual_bot.getLocalBounds();
     actual_bot.setOrigin(textRect9.left + textRect9.width / 2.0f,
         textRect9.top + textRect9.height / 2.0f);
+
+    actual_game.setString(to_string(game));
+    FloatRect textRect11 = actual_bot.getLocalBounds();
+    actual_game.setOrigin(textRect11.left + textRect11.width / 2.0f,
+        textRect11.top + textRect11.height / 2.0f);
 }
 
 void Screen::display(RenderWindow* window)
@@ -180,6 +206,9 @@ void Screen::display(RenderWindow* window)
     window->draw(bot_rect);
     window->draw(BOT);
     window->draw(actual_bot);
+    window->draw(game_rect);
+    window->draw(GAME);
+    window->draw(actual_game);
     window->display();
 }
 

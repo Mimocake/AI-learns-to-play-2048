@@ -7,6 +7,7 @@ using namespace std;
 
 const float e = 2.72;
 const float r = 0.3;
+const int mut_rate = 20;
 
 class Neuron
 {
@@ -23,14 +24,16 @@ public:
 class Network
 {
 private:
-	bool bios;
+	bool bias;
 	int NoL;
+	vector<int> architecture;
 	vector<vector<Neuron>> neurons;
 	vector<vector<vector<float>>> connections;
 public:
 	Network(vector<int>, bool);
 	vector<float> signal_passing(vector<float>);
-	float back_propogation(vector<float>);
+	void mutation();
+	friend Network crossing(Network&, Network&);
 	void store();
 	void load();
 	friend Neuron;

@@ -3,7 +3,6 @@
 
 Board::Board() : score(0)
 {
-	srand(time(NULL));
 	for (int i = 0; i < 4; i++)
 	{
 		tiles.emplace_back(vector<int>());
@@ -14,7 +13,7 @@ Board::Board() : score(0)
 	}
 }
 
-uv Board::new_step()
+void Board::new_step()
 {
 	vector<uv> empty(0);
 	for (int i = 0; i < 4; i++)
@@ -32,9 +31,7 @@ uv Board::new_step()
 	{
 		int ran = rand() % empty.size();
 		tiles[empty[ran].x][empty[ran].y] = (int)rand() % 10 == 0 ? 4 : 2;
-		return uv(empty[ran].x, empty[ran].y);
 	}
-
 }
 
 void Board::move_down()
