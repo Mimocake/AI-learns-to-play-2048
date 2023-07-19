@@ -2,7 +2,6 @@
 #include <vector>
 #include "Board.hpp"
 #include "Screen.hpp"
-#include "Network.hpp"
 using namespace std;
 using namespace sf;
 
@@ -16,4 +15,6 @@ void merge(vector<vector<int>>&, int&);
 
 void sort_vec(vector<float>&);
 
-bool choose_move(vector<float> res, Board& board, Screen& screen);
+bool choose_move_for_calculus(vector<float>, Board&, int&);
+
+bool choose_move_for_actual_board(Board&);

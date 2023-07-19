@@ -132,16 +132,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
-    <ClCompile Include="Generation.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Network.cpp" />
     <ClCompile Include="Other.cpp" />
     <ClCompile Include="Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.hpp" />
-    <ClInclude Include="Generation.hpp" />
-    <ClInclude Include="Network.hpp" />
     <ClInclude Include="Other.hpp" />
     <ClInclude Include="Screen.hpp" />
   </ItemGroup>
