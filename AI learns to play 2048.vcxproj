@@ -133,11 +133,13 @@
   <ItemGroup>
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Minimax.cpp" />
     <ClCompile Include="Other.cpp" />
     <ClCompile Include="Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.hpp" />
+    <ClInclude Include="Minimax.hpp" />
     <ClInclude Include="Other.hpp" />
     <ClInclude Include="Screen.hpp" />
   </ItemGroup>

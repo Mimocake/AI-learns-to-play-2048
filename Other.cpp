@@ -94,100 +94,13 @@ void sort_vec(vector<float>& vec)
 	}
 }
 
-bool choose_move_for_calculus(vector<float> res, Board& board, int& first_dir)
+void make_move(Board& board, int i)
 {
-	vector<vector<int>> t;
-	vector<float> sorted_res = res;
-	sort_vec(sorted_res);
-
-	for (int n = 0; n < 4; n++)
+	switch (i)
 	{
-		int index = 0;
-		for (int i = 0; i < 4; i++)
-		{
-			if (res[i] == sorted_res[n])
-			{
-				index = i;
-			}
-		}
-		t = board.tiles;
-		switch (index)
-		{
-		case 0: board.move_up(); break;
-		case 1: board.move_down(); break;
-		case 2: board.move_left(); break;
-		case 3: board.move_right(); break;
-		}
-		if (t != board.tiles)
-		{
-			board.new_step();
-			if (first_dir == -1)
-			{
-				first_dir = index;
-			}	
-			return false;
-		}
-		else if (n == 3 && board.num_of_empty == 0)
-		{
-			first_dir = rand() % 4;
-			return true;
-		}
-		else if (n == 3 && board.num_of_empty != 0)
-		{
-			index = rand() % 4;
-			switch (index)
-			{
-			case 0: board.move_up(); break;
-			case 1: board.move_down(); break;
-			case 2: board.move_left(); break;
-			case 3: board.move_right(); break;
-			}
-			board.new_step();
-		}
+	case 0: board.move_up(); break;
+	case 1: board.move_down(); break;
+	case 2: board.move_left(); break;
+	case 3: board.move_right(); break;
 	}
-	return false;
-}
-
-bool choose_move_for_actual_board(Board& real_board)
-{
-	Board board = real_board;
-	bool go = false;
-	vector<vector<int>> t;
-	vector<float> prior(4);
-	int i = 0;
-	int first_dir = -1;
-	vector<int> tot_score(4, 0);
-	vector<int> dir_count(4, 0);
-	vector<float> res(4);
-
-	for (int x = 0; x < 1000; x++)
-	{
-		for (int k = 0; k < 10 && !go; k++)
-		{
-			for (int j = 0; j < 4; j++)
-			{
-				prior[j] = rand() % 1000;
-			}
-			if (choose_move_for_calculus(prior, board, first_dir))
-			{
-				go = true;
-			}
-		}
-		int temp = board.score;
-		board = real_board;
-		tot_score[first_dir] += temp - real_board.score;
-		dir_count[first_dir]++;
-		first_dir = -1;
-		go = 0;
-	}
-	for (int j = 0; j < 4; j++)
-	{
-		res[j] = tot_score[j] / (float)dir_count[j];
-	}
-
-	if (choose_move_for_calculus(res, real_board, i))
-	{
-		return true;
-	}
-	else return false;
 }

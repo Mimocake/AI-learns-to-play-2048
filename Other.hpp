@@ -15,6 +15,4 @@ void merge(vector<vector<int>>&, int&);
 
 void sort_vec(vector<float>&);
 
-bool choose_move_for_calculus(vector<float>, Board&, int&);
-
-bool choose_move_for_actual_board(Board&);
+void make_move(Board&, int);
